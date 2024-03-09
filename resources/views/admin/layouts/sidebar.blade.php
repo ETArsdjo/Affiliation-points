@@ -3,8 +3,8 @@
         <!-- Aplication Brand -->
         <div class="app-brand">
             <a href="">
-                <img src="{{ asset('assets/images/loader.jpg') }}" width="50px">
-                <span class="brand-name" style="font-size: 17px">Ramtha Municipality</span>
+                {{-- <img src="{{ asset('assets/images/loader.jpg') }}" width="50px"> --}}
+                <span class="brand-name" style="font-size: 17px">Affiliation Points</span>
             </a>
         </div>
         <!-- begin sidebar scrollbar -->

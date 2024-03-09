@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\User;
+use App\Models\Branch;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class UserDataTable extends DataTable
+class BranchDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,19 +22,14 @@ class UserDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($query) {
-                $editBtn = "<a href='" . route('user_admin.edit', $query->id) . "' class='btn btn-success '><i class='far fa-edit'></i></a>";
-                $deleteBtn = "<a href='" . route('user_admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
-                return $editBtn . $deleteBtn;
-
-            })
+            ->addColumn('action', 'branch.action')
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(User $model): QueryBuilder
+    public function query(Branch $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -45,7 +40,7 @@ class UserDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('user-table')
+                    ->setTableId('branch-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -68,18 +63,15 @@ class UserDataTable extends DataTable
     {
         return [
             Column::make('name'),
-            Column::make('email'),
-            // Column::make('password'),
-            Column::make('phone'),
-            Column::make('gender'),
-            Column::make('role'),
-
-            Column::computed('action')
-            ->exportable(false)
-            ->printable(false)
-            ->width(120)
-            ->addClass('text-center'),
+            Column::make('address'),
+            Column::make('number'),
            
+            Column::computed('action')
+                  ->exportable(false)
+                  ->printable(false)
+                  ->width(60)
+                  ->addClass('text-center'),
+   
         ];
     }
 
@@ -88,6 +80,6 @@ class UserDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'User_' . date('YmdHis');
+        return 'Branch_' . date('YmdHis');
     }
 }

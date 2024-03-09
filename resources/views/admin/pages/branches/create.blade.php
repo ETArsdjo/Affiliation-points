@@ -1,55 +1,55 @@
 @extends('admin.layouts.master')
-@section('title', 'Edit Admin')
+@section('title', 'Add Branch')
 @section('content')
     <div class="content-wrapper">
         <div class="content">
             <div class="card card-default">
                 <div class="card-header">
-                    <h2>Edit Admin: {{ $admin->name }}</h2>
+                    <h2>Create Branch</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin-users.update', $admin->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('branch_admin.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                        @method('PUT')
-                        <div class="row">
-                            <div class="col-xl-2">
-                                <div class="mb-5">
-                                    <img id="showImage" width="100px"
-                                        src="{{ $admin->image == '' ? url('no-admin-image.png') : asset($admin->image) }}">
-                                </div>
-                            </div>
-                            <div class="col-xl-10">
-                                <div class="mb-5">
-                                    <label class="text-dark font-weight-medium" for="">Image</label>
-                                    <input type="file" class="form-control" name="image" id="image">
-                                </div>
-                            </div>
-                        </div>
+                       
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">Admin Name</label>
+                                    <label class="text-dark font-weight-medium">Branch Name</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
                                         </div>
                                         <input type="text" class="form-control" name="name"
-                                            value="{{ $admin->name }}">
+                                            value="{{ old('name') }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">Admin Email</label>
+                                    <label class="text-dark font-weight-medium">Branch Address </label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
                                         </div>
-                                        <input type="text" class="form-control" name="header"
-                                            value="{{ $admin->email }}">
+                                        <input type="text" class="form-control" name="address"
+                                            value="{{ old('address') }}">
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xl-12">
+                                <div class="mb-5">
+                                    <label class="text-dark font-weight-medium">Branch Number</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
+                                        </div>
+                                        <input type="number" class="form-control" name="number"
+                                            value="{{ old('number') }}">
+                                    </div>
+                                </div>
+                            </div>
+                         
+                          
                         </div>
                         <div class="row">
                             <div class="form-footer pt-5 border-top">

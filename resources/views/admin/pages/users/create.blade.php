@@ -5,10 +5,10 @@
         <div class="content">
             <div class="card card-default">
                 <div class="card-header">
-                    <h2>Create Admin</h2>
+                    <h2>Create User</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('admin-users.store') }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('user_admin.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         <div class="row">
                             <div class="col-xl-2">
@@ -26,7 +26,7 @@
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">Admin Name</label>
+                                    <label class="text-dark font-weight-medium">User Name</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
@@ -38,7 +38,7 @@
                             </div>
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">Admin Email</label>
+                                    <label class="text-dark font-weight-medium">User Email</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
@@ -48,6 +48,54 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="col-xl-12">
+                                <div class="mb-5">
+                                    <label class="text-dark font-weight-medium">User Password</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
+                                        </div>
+                                        <input type="password" class="form-control" name="password"
+                                            value="{{ old('password') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="mb-5">
+                                    <label class="text-dark font-weight-medium">User Phone</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
+                                        </div>
+                                        <input type="phone" class="form-control" name="phone"
+                                            value="{{ old('phone') }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="card-body">
+                                <div class="mb-5">
+                                    <label for="male" class="text-dark font-weight-medium">Male</label>
+                                    <input type="radio" id="male" name="gender" value="male" />
+                                </div>
+                                <div class="mb-5">
+                                    <label for="female" class="text-dark font-weight-medium">Female</label>
+                                    <input type="radio" id="female" name="gender" value="female" />
+                                </div>
+    
+                            </div>
+        
+                            <div class="card-body">
+                                <div class="mb-5">
+                                    <label for="role" class="form-label">Role</label>
+                                    <select class="form-select" id="role" name="role">
+                                        <option value="manager">Manager</option>
+                                        <option value="user" >User</option>
+                                        <option value="employee">Employee</option>
+                                    </select>
+                                </div>
+                               
+                            </div>
+                            
                         </div>
                         <div class="row">
                             <div class="form-footer pt-5 border-top">
