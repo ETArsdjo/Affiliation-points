@@ -22,7 +22,12 @@ class BranchDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', 'branch.action')
+            ->addColumn('action',  function ($query) {
+                $editBtn = "<a href='" . route('branch_admin.edit', $query->id) . "' class='btn btn-success '><i class='far fa-edit'></i></a>";
+                $deleteBtn = "<a href='" . route('branch_admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
+                return $editBtn . $deleteBtn;
+
+            })
             ->setRowId('id');
     }
 

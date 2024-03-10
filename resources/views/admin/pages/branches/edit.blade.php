@@ -5,87 +5,52 @@
         <div class="content">
             <div class="card card-default">
                 <div class="card-header">
-                    <h2>Edit Admin: {{ $admin->name }}</h2>
+                    <h2>Edit Branch: {{ $branch->name }}</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('user_admin.update', $admin->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('branch_admin.update', $branch->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
-                        <div class="row">
-                            <div class="col-xl-2">
-                                <div class="mb-5">
-                                    <img id="showImage" width="100px"
-                                        src="{{ $admin->image == '' ? url('no-admin-image.png') : asset($admin->image) }}">
-                                </div>
-                            </div>
-                            <div class="col-xl-10">
-                                <div class="mb-5">
-                                    <label class="text-dark font-weight-medium" for="">Image</label>
-                                    <input type="file" class="form-control" name="image" id="image">
-                                </div>
-                            </div>
-                        </div>
+                       
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">User Name</label>
+                                    <label class="text-dark font-weight-medium">Branch Name</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
                                         </div>
                                         <input type="text" class="form-control" name="name"
-                                            value="{{ $admin->name }}">
+                                            value="{{ $branch->name }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">User Email</label>
+                                    <label class="text-dark font-weight-medium">Branch address</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
                                         </div>
-                                        <input type="email" class="form-control" name="email"
-                                            value="{{ $admin->email }}">
+                                        <input type="text" class="form-control" name="address"
+                                            value="{{ $branch->address }}">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">User phone</label>
+                                    <label class="text-dark font-weight-medium">Branch number</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
                                         </div>
-                                        <input type="phone" class="form-control" name="phone"
-                                            value="{{ $admin->phone }}">
+                                        <input type="number" class="form-control" name="number"
+                                            value="{{ $branch->number }}">
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-12">
-                                <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">User gender</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="gender"
-                                            value="{{ $admin->gender }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-12">
-                                <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">User role</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="role"
-                                            value="{{ $admin->role }}">
-                                    </div>
-                                </div>
-                            </div>
+                          
+                           
                         </div>
                         <div class="row">
                             <div class="form-footer pt-5 border-top">
