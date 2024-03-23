@@ -26,10 +26,26 @@
                         <span class="nav-text">Users</span>
                     </a>
                 </li>
-              
-              
-               
-               
+                <li class="">
+                    <a class="sidenav-item-link" href="{{ route('category_admin.index') }}">
+                        <i class="mdi mdi-folder"></i>
+                        <span class="nav-text">Categories</span>
+                    </a>
+                </li>
+                
+                <li class="">
+                    <a class="sidenav-item-link" href="{{ route('branch_admin.index') }}">
+                        <i class="mdi mdi-source-branch"></i>
+                        <span class="nav-text">Branch</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a class="sidenav-item-link" href="{{ route('employee_admin.index') }}">
+                        <i class="mdi mdi-account-group"></i>
+                        <span class="nav-text">Employees</span>
+                    </a>
+                </li>
+                
              
             </ul>
         </div>
