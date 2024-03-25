@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
@@ -33,6 +34,8 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+Route::get('/dashboard', [AdminController::class, 'homeDashboard'])->name('dashboard');
+
 Route::resource('user_admin', UserController::class);
 Route::resource('branch_admin', BranchController::class);
 Route::resource('employee_admin', EmployeeController::class);

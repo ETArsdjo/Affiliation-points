@@ -12,7 +12,7 @@
             <!-- sidebar menu -->
             <ul class="nav sidebar-inner" id="sidebar-menu">
                 <li class="">
-                    <a class="sidenav-item-link" href="{{ url('admin/dashboard') }}">
+                    <a class="sidenav-item-link" href="{{ route('dashboard') }}">
                         <i class="mdi mdi-briefcase-account-outline"></i>
                         <span class="nav-text">Dashboard</span>
                     </a>
