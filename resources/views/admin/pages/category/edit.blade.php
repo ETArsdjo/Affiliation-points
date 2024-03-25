@@ -5,52 +5,64 @@
         <div class="content">
             <div class="card card-default">
                 <div class="card-header">
-                    <h2>Edit Branch: {{ $branch->name }}</h2>
+                    <h2>Edit Category: {{ $category->name }}</h2>
                 </div>
                 <div class="card-body">
-                    <form action="{{ route('branch_admin.update', $branch->id) }}" method="POST" enctype="multipart/form-data">
+                    <form action="{{ route('category_admin.update', $category->id) }}" method="POST" enctype="multipart/form-data">
                         @csrf
                         @method('PUT')
                        
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">Branch Name</label>
+                                    <label class="text-dark font-weight-medium">category type</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
                                         </div>
-                                        <input type="text" class="form-control" name="name"
-                                            value="{{ $branch->name }}">
+                                        <input type="text" class="form-control" name="type"
+                                            value="{{ $category->type }}">
                                     </div>
                                 </div>
                             </div>
+                           
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">Branch address</label>
+                                    <label class="text-dark font-weight-medium">category price</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
                                         </div>
-                                        <input type="text" class="form-control" name="address"
-                                            value="{{ $branch->address }}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-12">
-                                <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">Branch number</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
-                                        </div>
-                                        <input type="number" class="form-control" name="number"
-                                            value="{{ $branch->number }}">
+                                        <input type="number" class="form-control" name="price"
+                                            value="{{ $category->number }}">
                                     </div>
                                 </div>
                             </div>
                           
-                           
+                            <div class="col-xl-12">
+                                <div class="mb-5">
+                                    <label class="text-dark font-weight-medium">category image</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
+                                        </div>
+                                        <input type="text" class="form-control" name="image"
+                                            value="{{ $category->image }}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-12">
+                                <div class="mb-5">
+                                    <label class="text-dark font-weight-medium">category note</label>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
+                                        </div>
+                                        <input type="text" class="form-control" name="note"
+                                            value="{{ $category->note }}">
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                         <div class="row">
                             <div class="form-footer pt-5 border-top">

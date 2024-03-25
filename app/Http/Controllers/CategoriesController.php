@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\CategoriDataTable;
+use App\Models\branch;
 use App\Models\categories;
 use Illuminate\Http\Request;
 use App\Http\Requests\UpdatecategoriesRequest;
@@ -68,37 +69,36 @@ class CategoriesController extends Controller
      */
     public function edit($id)
     {
-        $branch = branch::findOrFail($id);
-        return view('admin.pages.branches.edit', compact('branch'));
+        $category = categories::findOrFail($id);
+        return view('admin.pages.category.edit', compact('category'));
     }
 
 
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name' => ['required', 'string'],
-            'address' => ['required', 'string'],
-            'number' => ['required', 'string'],
-
+            'type' => ['required'],
+            'price' => ['required'],
+            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // Adjust validation rules as needed
+            'note' => ['required'],
         ]);
     
-        // Retrieve the branch by ID
-        $branch = branch::findOrFail($id);
+        $category = categories::findOrFail($id);
     
-        // Update the branch details
-        $branch->name = $request->name;
-        $branch->address = $request->address;
-        $branch->number = $request->number;
+        $category->type = $request->type;
+        $category->price = $request->price;
+        $category->image = $request->image;
+        $category->note = $request->note;
+
     
-        // Save the updated user details
-        $branch->save();
+        $category->save();
     
         $notification = array(
-            'message' => 'Branch Updated Successfully!!',
+            'message' => 'Category Updated Successfully!!',
             'alert-type' => 'success',
         );
     
-        return redirect()->route('branch_admin.index')->with($notification);
+        return redirect()->route('category_admin.index')->with($notification);
     }
 
     /**
