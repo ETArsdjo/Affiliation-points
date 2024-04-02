@@ -2,8 +2,8 @@
 @section('title', 'Admin Dashboard')
 @section('content')
     <!-- ====================================
-                                                                                                                    ——— CONTENT WRAPPER
-                                                                                                                    ===================================== -->
+                                                                                                                        ——— CONTENT WRAPPER
+                                                                                                                        ===================================== -->
     <div class="content-wrapper">
         <div class="content">
             <!-- Top Statistics -->
@@ -121,53 +121,87 @@
                     </div>
                 </div>
             </div>
-         
+
+
+
+
+
+
+
+           
+
+
+
+
+
             <div class="row">
                 <div class="col-xl-8">
-                  
-                  <!-- Income and Express -->
-                  <div class="card card-default">
-                    <div class="card-header">
-                      <h2>Income And Expenses</h2>
-                      <div class="dropdown">
-                        <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
-                          aria-haspopup="true" aria-expanded="false" data-display="static">
-                        </a>
 
-                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
+                    <!-- Income and Express -->
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h2>User Registration</h2>
                         </div>
-                      </div>
-
+                        <div class="card-body">
+                            <div class="chart-wrapper">
+                                <canvas id="mixed-chart-1"></canvas>
+                            </div>
+                        </div>
                     </div>
-                    <div class="card-body">
-                      <div class="chart-wrapper">
-                        <div id="mixed-chart-1"></div>
-                      </div>
-                    </div>
-
-                  </div>
+                
+                    <script>
+                        var userChartCanvas = document.getElementById("mixed-chart-1").getContext("2d");
+                        var userChart = new Chart(userChartCanvas, {
+                            type: 'bar',
+                            data: {
+                                labels: {!! json_encode($labels) !!}, // Ensure $labels is an array
+                                datasets: [{
+                                    label: 'Number of Users Registered',
+                                    data: {!! json_encode($data) !!}, // Ensure $data is an array
+                                    backgroundColor: "#9e6de0",
+                                    borderColor: 'rgba( 158, 109, 224, 1)',
+                                    borderWidth: 1
+                                }]
+                            },
+                            options: {
+                                scales: {
+                                    y: {
+                                        beginAtZero: true,
+                                        title: {
+                                            display: true,
+                                            text: 'Number of Users'
+                                        }
+                                    },
+                                    x: {
+                                        title: {
+                                            display: true,
+                                            text: 'Month'
+                                        }
+                                    }
+                
+                                }
+                            }
+                        });
+                    </script>
 
 
                 </div>
                 <div class="col-xl-4">
-                  <!-- Current Users  -->
-                  <div class="card card-default">
-                    <div class="card-header">
-                      <h2>Current Users</h2>
-                      <span>Realtime</span>
+                    <!-- Current Users  -->
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h2>Current Users</h2>
+                            <span>Realtime</span>
+                        </div>
+                        <div class="card-body">
+                            <div id="barchartlg2"></div>
+                        </div>
+                        <div class="card-footer bg-white py-4">
+                            <a href="#" class="text-uppercase">Current Users Overview</a>
+                        </div>
                     </div>
-                    <div class="card-body">
-                      <div id="barchartlg2"></div>
-                    </div>
-                    <div class="card-footer bg-white py-4">
-                      <a href="#" class="text-uppercase">Current Users Overview</a>
-                    </div>
-                  </div>
                 </div>
-              </div>
+            </div>
         </div>
 
     </div>

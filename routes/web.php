@@ -6,6 +6,8 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BranchController;
+use App\Http\Controllers\ChartController;
+
 
 use App\Models\employee;
 use Illuminate\Support\Facades\Route;
@@ -40,5 +42,6 @@ Route::resource('user_admin', UserController::class);
 Route::resource('branch_admin', BranchController::class);
 Route::resource('employee_admin', EmployeeController::class);
 Route::resource('category_admin', CategoriesController::class);
+Route::get('/bar-chart', [ChartController::class, 'userChart']);
 
 require __DIR__.'/auth.php';

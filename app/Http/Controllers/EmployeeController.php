@@ -70,11 +70,18 @@ class EmployeeController extends Controller
      */
     public function edit($id)
     {
-        $employee = employee::findOrFail($id);
-        $employees = User::where('role', 'employee')->get();
-        $branches = branch::all();
-        return view('admin.pages.employee.edit', compact('employee','employees','branches'));
+        // Retrieve the employee by ID
+        $employee = Employee::findOrFail($id);
+        
+        // Assuming you need to pass additional data like branches and users
+        $branches = Branch::all();
+        $users = User::where('role', 'employee')->get();
+        
+        // Return the view with the employee data and additional data
+        return view('admin.pages.employee.edit', compact('employee', 'branches', 'users'));
     }
+    
+    
 
 
     public function update(Request $request, $id)
@@ -82,37 +89,35 @@ class EmployeeController extends Controller
         $request->validate([
             'employee_id' => ['required'],
             'branch_id' => ['required'],
-
         ]);
     
-        // Retrieve the branch by ID
-        $employee = employee::findOrFail($id);
+        // Retrieve the employee by ID
+        $employee = Employee::findOrFail($id);
     
-        // Update the branch details
-        $employee->name = $request->employee_id;
-        $employee->address = $request->branch_id;    
-        // Save the updated user details
+        // Update the employee details
+        $employee->employee_id = $request->employee_id;
+        $employee->branch_id = $request->branch_id;
+    
+        // Save the updated employee details
         $employee->save();
     
-        $notification = array(
+        $notification = [
             'message' => 'Employee Updated Successfully!!',
             'alert-type' => 'success',
-        );
+        ];
     
         return redirect()->route('employee_admin.index')->with($notification);
     }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
-        try{
-            $employee = employee::findOrFail($id);
+        try {
+            $employee = Employee::findOrFail($id);
             $employee->delete();
-            return response(['status' => 'success', 'message' => 'Deleted Successfully!']);}
-            catch  (\Exception $e) {
-                Log::error("Error deleting employee: {$e->getMessage()}");
-            }
+            return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+        } catch (\Exception $e) {
+            Log::error("Error deleting employee: {$e->getMessage()}");
+            return response(['status' => 'error', 'message' => 'Failed to delete employee.']);
+        }
     }
+        
 }
