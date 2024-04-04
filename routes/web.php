@@ -36,12 +36,18 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+// Route::get('/dashboard', [AdminController::class, 'homeDashboard'])->name('dashboard');
+// Route::get('/dashboard', [AdminController::class, 'userChart'])->name('dashboard');
+// Route::get('/dashboard', [AdminController::class, 'categorySalesChart'])->name('dashboard');
 Route::get('/dashboard', [AdminController::class, 'homeDashboard'])->name('dashboard');
+
+
 
 Route::resource('user_admin', UserController::class);
 Route::resource('branch_admin', BranchController::class);
 Route::resource('employee_admin', EmployeeController::class);
 Route::resource('category_admin', CategoriesController::class);
-Route::get('/bar-chart', [ChartController::class, 'userChart']);
+// Route::get('/bar_chart', [ChartController::class, 'categorySalesChart']);
+
 
 require __DIR__.'/auth.php';

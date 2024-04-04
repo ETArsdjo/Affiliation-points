@@ -3,26 +3,26 @@
 @section('content')
     <div class="card card-default">
         <div class="card-header">
-            <h2>User Registration</h2>
+            <h2>Category Sales</h2>
         </div>
         <div class="card-body">
             <div class="chart-wrapper">
-                <canvas id="mixed-chart-1"></canvas>
+                <canvas id="category-sales-chart"></canvas>
             </div>
         </div>
     </div>
 
     <script>
-        var userChartCanvas = document.getElementById("mixed-chart-1").getContext("2d");
-        var userChart = new Chart(userChartCanvas, {
+        var categorySalesCanvas = document.getElementById("category-sales-chart").getContext("2d");
+        var categorySalesChart = new Chart(categorySalesCanvas, {
             type: 'bar',
             data: {
-                labels: {!! json_encode($labels) !!}, // Ensure $labels is an array
+                labels: {!! json_encode($labels2) !!}, // Ensure $labels is an array
                 datasets: [{
-                    label: 'Number of Users Registered',
-                    data: {!! json_encode($data) !!}, // Ensure $data is an array
-                    backgroundColor: "#9e6de0",
-                    borderColor: 'rgba( 158, 109, 224, 1)',
+                    label: 'Number of Sales',
+                    data: {!! json_encode($data2) !!}, // Ensure $data is an array
+                    backgroundColor: "#faafca",
+                    borderColor: 'rgba(158, 109, 224, 1)',
                     borderWidth: 1
                 }]
             },
@@ -32,19 +32,19 @@
                         beginAtZero: true,
                         title: {
                             display: true,
-                            text: 'Number of Users'
+                            text: 'Number of Sales'
                         }
                     },
                     x: {
                         title: {
                             display: true,
-                            text: 'Month'
+                            text: 'Category'
                         }
                     }
-
                 }
             }
         });
     </script>
+
 
 @endsection

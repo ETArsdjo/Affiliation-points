@@ -37,6 +37,6 @@ class ChartController extends Controller
             $data[$monthIndex] = $user->count;
         }
 
-        return view('admin.index', compact('data', 'labels'));
+        return view('chart', compact('data', 'labels'));
     }
 }

@@ -296,14 +296,6 @@ if (splinaArea4 !== null) {
 
 //   /*======== 5. MIXED CHART 01 ========*/
 
-  // var ctx = document.getElementById('mixed-chart-1').getContext('2d');
-        // var userChart= new chart(ctx,{
-        //         type : 'bar',
-        //         data:{
-        //                 labels:{!! json_encode($labels)!!}
-        //                 data:{!! json_encode($data)!!}
-        //         }
-        // })
 var mixedChart1 = document.querySelector("#mixed-chart-1");
 if (mixedChart1 !== null) {
   var mixedOptions1 = {
@@ -314,7 +306,7 @@ if (mixedChart1 !== null) {
         show: false,
       },
     },
-    colors: ["#9e6de0"],
+    colors: ["#9e6de0", "#faafca", "#f2e052"],
     legend: {
       show: true,
       position: "top",
@@ -345,11 +337,20 @@ if (mixedChart1 !== null) {
 
     series: [
       {
-        name: "User",
+        name: "Income",
         type: "column",
         data: [44, 55, 57, 56, 61, 58, 63, 60, 66, 55, 47, 67],
-      }
-   
+      },
+      {
+        name: "Expenses",
+        type: "column",
+        data: [76, 85, 101, 98, 87, 100, 91, 40, 94, 50, 47, 55],
+      },
+      {
+        name: "profit",
+        data: [50, 40, 64, 87, -15, 104, 63, 42, 32, 60, 78, 25],
+        type: "line",
+      },
     ],
 
     xaxis: {

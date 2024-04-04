@@ -2,8 +2,8 @@
 @section('title', 'Admin Dashboard')
 @section('content')
     <!-- ====================================
-                                                                                                                        ——— CONTENT WRAPPER
-                                                                                                                        ===================================== -->
+                                                                                                                            ——— CONTENT WRAPPER
+                                                                                                                            ===================================== -->
     <div class="content-wrapper">
         <div class="content">
             <!-- Top Statistics -->
@@ -125,83 +125,103 @@
 
 
 
-
-
-
-           
-
-
-
-
-
             <div class="row">
-                <div class="col-xl-8">
-
-                    <!-- Income and Express -->
+                <div class="col-md-12">
                     <div class="card card-default">
                         <div class="card-header">
                             <h2>User Registration</h2>
                         </div>
                         <div class="card-body">
                             <div class="chart-wrapper">
-                                <canvas id="mixed-chart-1"></canvas>
+                                <canvas id="user-registration-chart"></canvas>
                             </div>
-                        </div>
-                    </div>
-                
-                    <script>
-                        var userChartCanvas = document.getElementById("mixed-chart-1").getContext("2d");
-                        var userChart = new Chart(userChartCanvas, {
-                            type: 'bar',
-                            data: {
-                                labels: {!! json_encode($labels) !!}, // Ensure $labels is an array
-                                datasets: [{
-                                    label: 'Number of Users Registered',
-                                    data: {!! json_encode($data) !!}, // Ensure $data is an array
-                                    backgroundColor: "#9e6de0",
-                                    borderColor: 'rgba( 158, 109, 224, 1)',
-                                    borderWidth: 1
-                                }]
-                            },
-                            options: {
-                                scales: {
-                                    y: {
-                                        beginAtZero: true,
-                                        title: {
-                                            display: true,
-                                            text: 'Number of Users'
-                                        }
-                                    },
-                                    x: {
-                                        title: {
-                                            display: true,
-                                            text: 'Month'
-                                        }
-                                    }
-                
-                                }
-                            }
-                        });
-                    </script>
-
-
-                </div>
-                <div class="col-xl-4">
-                    <!-- Current Users  -->
-                    <div class="card card-default">
-                        <div class="card-header">
-                            <h2>Current Users</h2>
-                            <span>Realtime</span>
-                        </div>
-                        <div class="card-body">
-                            <div id="barchartlg2"></div>
-                        </div>
-                        <div class="card-footer bg-white py-4">
-                            <a href="#" class="text-uppercase">Current Users Overview</a>
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h2>Category Sales</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-wrapper">
+                                <canvas id="category-sales-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                var userRegistrationChartCanvas = document.getElementById("user-registration-chart").getContext("2d");
+                var userRegistrationChart = new Chart(userRegistrationChartCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: {!! json_encode($labels) !!},
+                        datasets: [{
+                            label: 'Number of Users Registered',
+                            data: {!! json_encode($data) !!},
+                            backgroundColor: "#9e6de0",
+                            borderColor: 'rgba(158, 109, 224, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Number of Users'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Month'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                var categorySalesChartCanvas = document.getElementById("category-sales-chart").getContext("2d");
+                var categorySalesChart = new Chart(categorySalesChartCanvas, {
+                    type: 'bar',
+                    data: {
+                        labels: {!! json_encode($labels2) !!},
+                        datasets: [{
+                            label: 'Number of Sales',
+                            data: {!! json_encode($data2) !!},
+                            backgroundColor: "#faafca",
+                            borderColor: 'rgba(158, 109, 224, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                title: {
+                                    display: true,
+                                    text: 'Number of Sales'
+                                }
+                            },
+                            x: {
+                                title: {
+                                    display: true,
+                                    text: 'Category'
+                                }
+                            }
+                        }
+                    }
+                });
+            </script>
+
+
         </div>
 
     </div>
