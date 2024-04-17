@@ -39,4 +39,32 @@ class ChartController extends Controller
 
         return view('chart', compact('data', 'labels'));
     }
+
+
+
+    public function userPointsChart()
+    {
+        // Retrieve users along with their total points
+        $users = User::with('points')->get();
+
+        // Prepare data for the chart
+        $labels = $users->pluck('name'); // Assuming 'name' is the user attribute you want to use as labels
+        $data = $users->pluck('points')->map->sum('points'); // Sum the points for each user
+
+        // Render the chart view with the data
+        return view('chart', compact('labels', 'data'));
+    }
+
+    public function genderChart()
+{
+    $maleCount = User::where('gender', 'male')->count();
+    $femaleCount = User::where('gender', 'female')->count();
+    
+    $total = $maleCount + $femaleCount;
+    
+    $malePercentage = ($total > 0) ? ($maleCount / $total) * 100 : 0;
+    $femalePercentage = ($total > 0) ? ($femaleCount / $total) * 100 : 0;
+    
+    return view('chart', compact('malePercentage', 'femalePercentage'));
+}
 }

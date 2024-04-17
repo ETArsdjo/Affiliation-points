@@ -3,6 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\EmployeeController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\BranchController;
@@ -47,7 +48,9 @@ Route::resource('user_admin', UserController::class);
 Route::resource('branch_admin', BranchController::class);
 Route::resource('employee_admin', EmployeeController::class);
 Route::resource('category_admin', CategoriesController::class);
-// Route::get('/bar_chart', [ChartController::class, 'categorySalesChart']);
+Route::resource('product_admin', ProductController::class);
+
+Route::get('/bar_chart', [ChartController::class, 'genderChart']);
 
 
 require __DIR__.'/auth.php';

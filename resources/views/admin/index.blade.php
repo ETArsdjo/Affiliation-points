@@ -2,8 +2,8 @@
 @section('title', 'Admin Dashboard')
 @section('content')
     <!-- ====================================
-                                                                                                                            ——— CONTENT WRAPPER
-                                                                                                                            ===================================== -->
+                                                                                                                                    ——— CONTENT WRAPPER
+                                                                                                                                    ===================================== -->
     <div class="content-wrapper">
         <div class="content">
             <!-- Top Statistics -->
@@ -126,7 +126,7 @@
 
 
             <div class="row">
-                <div class="col-md-12">
+                <div class="col-md-7">
                     <div class="card card-default">
                         <div class="card-header">
                             <h2>User Registration</h2>
@@ -134,6 +134,17 @@
                         <div class="card-body">
                             <div class="chart-wrapper">
                                 <canvas id="user-registration-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-5">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h2>Gender Distribution</h2>
+                        <div class="card-body">
+                            <div class="chart-wrapper">
+                                <canvas id="genderChart"></canvas>
                             </div>
                         </div>
                     </div>
@@ -155,6 +166,20 @@
                 </div>
             </div>
 
+            <div class="row mt-4">
+                <div class="col-md-12">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h2>User Points</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-wrapper">
+                                <canvas id="user-points-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <script>
                 var userRegistrationChartCanvas = document.getElementById("user-registration-chart").getContext("2d");
                 var userRegistrationChart = new Chart(userRegistrationChartCanvas, {
@@ -164,7 +189,7 @@
                         datasets: [{
                             label: 'Number of Users Registered',
                             data: {!! json_encode($data) !!},
-                            backgroundColor: "#9e6de0",
+                            backgroundColor: "rgba(158, 109, 224, .5)",
                             borderColor: 'rgba(158, 109, 224, 1)',
                             borderWidth: 1
                         }]
@@ -187,7 +212,9 @@
                         }
                     }
                 });
-
+            </script>
+            
+            <script>
                 var categorySalesChartCanvas = document.getElementById("category-sales-chart").getContext("2d");
                 var categorySalesChart = new Chart(categorySalesChartCanvas, {
                     type: 'bar',
@@ -196,8 +223,8 @@
                         datasets: [{
                             label: 'Number of Sales',
                             data: {!! json_encode($data2) !!},
-                            backgroundColor: "#faafca",
-                            borderColor: 'rgba(158, 109, 224, 1)',
+                            backgroundColor: 'rgba(255, 99, 132, 0.5)',
+                            borderColor: 'rgba(255, 99, 132, 1)',
                             borderWidth: 1
                         }]
                     },
@@ -218,6 +245,67 @@
                             }
                         }
                     }
+                });
+            </script>
+            
+            <script>
+                // Get chart data from PHP
+                var labelsUser = {!! json_encode($labelsUser) !!};
+                var dataPoint = {!! json_encode($dataPoint) !!};
+            
+                // Render chart
+                var ctx = document.getElementById('user-points-chart').getContext('2d');
+                var userPointsChart = new Chart(ctx, {
+                    type: 'bar',
+                    data: {
+                        labels: labelsUser,
+                        datasets: [{
+                            label: 'User Points',
+                            data: dataPoint,
+                            backgroundColor: 'rgba(242, 224, 82, .5)',
+                            borderColor: 'rgba(242, 224, 82, 1)',
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+              <script>
+                // Data for the chart
+                var data = {
+                    labels: ['Male', 'Female'],
+                    datasets: [{
+                        data: [{{ $malePercentage }}, {{ $femalePercentage }}],
+                        backgroundColor: ['#36a2eb', '#ff6384']
+                    }]
+                };
+        
+                // Configuration options
+                var options = {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    legend: {
+                        position: 'bottom',
+                        labels: {
+                            boxWidth: 15
+                        }
+                    }
+                };
+        
+                // Get the context of the canvas element we want to select
+                var ctx = document.getElementById('genderChart').getContext('2d');
+        
+                // Create the chart
+                var myDoughnutChart = new Chart(ctx, {
+                    type: 'doughnut',
+                    data: data,
+                    options: options
                 });
             </script>
 

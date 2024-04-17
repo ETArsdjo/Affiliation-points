@@ -56,10 +56,30 @@ class AdminController extends Controller
     $labels2 = collect($salesData)->pluck('category');
     $data2 = collect($salesData)->pluck('total_sales_amount');
     
+
+     // Retrieve users along with their total points
+     $users = User::with('points')->get();
+
+     // Prepare data for the chart
+     $labelsUser = $users->pluck('name'); // Assuming 'name' is the user attribute you want to use as labels
+     $dataPoint = $users->pluck('points')->map->sum('points'); // Sum the points for each user
+
+        
+     //persent 
+     
+    $maleCount = User::where('gender', 'male')->count();
+    $femaleCount = User::where('gender', 'female')->count();
+    
+    $total = $maleCount + $femaleCount;
+    
+    $malePercentage = ($total > 0) ? ($maleCount / $total) * 100 : 0;
+    $femalePercentage = ($total > 0) ? ($femaleCount / $total) * 100 : 0;
+    
     
 
-    return view('admin.index', compact('data', 'labels', 'data2', 'labels2'));
+    return view('admin.index', compact('data', 'labels', 'data2', 'labels2','labelsUser','dataPoint','malePercentage', 'femalePercentage'));
 }
+
 
     // public function userChart()
     // {

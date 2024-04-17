@@ -1,50 +1,51 @@
 @extends('admin.layouts.master')
 @section('title', 'Admin Dashboard')
 @section('content')
-    <div class="card card-default">
-        <div class="card-header">
-            <h2>Category Sales</h2>
-        </div>
-        <div class="card-body">
-            <div class="chart-wrapper">
-                <canvas id="category-sales-chart"></canvas>
+
+        <div class="col-md-5">
+            <div class="card card-default">
+                <div class="card-header">
+                    <h2>Gender Distribution</h2>
+                <div class="card-body">
+                    <div class="chart-wrapper">
+                        <canvas id="genderChart"></canvas>
+                    </div>
+                </div>
             </div>
         </div>
-    </div>
+
 
     <script>
-        var categorySalesCanvas = document.getElementById("category-sales-chart").getContext("2d");
-        var categorySalesChart = new Chart(categorySalesCanvas, {
-            type: 'bar',
-            data: {
-                labels: {!! json_encode($labels2) !!}, // Ensure $labels is an array
-                datasets: [{
-                    label: 'Number of Sales',
-                    data: {!! json_encode($data2) !!}, // Ensure $data is an array
-                    backgroundColor: "#faafca",
-                    borderColor: 'rgba(158, 109, 224, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        title: {
-                            display: true,
-                            text: 'Number of Sales'
-                        }
-                    },
-                    x: {
-                        title: {
-                            display: true,
-                            text: 'Category'
-                        }
-                    }
+        // Data for the chart
+        var data = {
+            labels: ['Male', 'Female'],
+            datasets: [{
+                data: [{{ $malePercentage }}, {{ $femalePercentage }}],
+                backgroundColor: ['#36a2eb', '#ff6384']
+            }]
+        };
+
+        // Configuration options
+        var options = {
+            responsive: true,
+            maintainAspectRatio: false,
+            legend: {
+                position: 'bottom',
+                labels: {
+                    boxWidth: 15
                 }
             }
+        };
+
+        // Get the context of the canvas element we want to select
+        var ctx = document.getElementById('genderChart').getContext('2d');
+
+        // Create the chart
+        var myDoughnutChart = new Chart(ctx, {
+            type: 'doughnut',
+            data: data,
+            options: options
         });
     </script>
-
 
 @endsection
