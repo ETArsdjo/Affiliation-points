@@ -11,16 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('sales', function (Blueprint $table) {
+        Schema::create('additional_menues', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('category_id');
-            $table->integer('quantity');
-            $table->decimal('amount', 10, 2);
-            $table->date('sale_date');
+            $table->string('name_arabic');
+            $table->string('name_english');
+            $table->decimal('price', 10, 2); // Change the precision and scale according to your needs
             $table->timestamps();
-
-            // Foreign key constraint
-            $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
+        
         });
     }
 
@@ -29,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('sales');
+        Schema::dropIfExists('additional_menues');
     }
 };

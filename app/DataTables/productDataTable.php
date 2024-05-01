@@ -31,30 +31,32 @@ class productDataTable extends DataTable
      */
     public function query(product $model): QueryBuilder
     {
-        return $model->newQuery();
+        return $model->newQuery()->with('category');
     }
 
     /**
      * Optional method if you want to use the html builder.
      */
-    public function html(): HtmlBuilder
-    {
-        return $this->builder()
-                    ->setTableId('product-table')
-                    ->columns($this->getColumns())
-                    ->minifiedAjax()
-                    //->dom('Bfrtip')
-                    ->orderBy(1)
-                    ->selectStyleSingle()
-                    ->buttons([
-                        Button::make('excel'),
-                        Button::make('csv'),
-                        Button::make('pdf'),
-                        Button::make('print'),
-                        Button::make('reset'),
-                        Button::make('reload')
-                    ]);
-    }
+
+public function html(): HtmlBuilder
+{
+    return $this->builder()
+                ->setTableId('product-table')
+                ->columns($this->getColumns())
+                ->minifiedAjax()
+                //->dom('Bfrtip')
+                ->orderBy(0) // Order by the first column (0-based index)
+                ->selectStyleSingle()
+                ->buttons([
+                    Button::make('excel'),
+                    Button::make('csv'),
+                    Button::make('pdf'),
+                    Button::make('print'),
+                    Button::make('reset'),
+                    Button::make('reload')
+                ]);
+}
+
 
     /**
      * Get the dataTable columns definition.
@@ -62,14 +64,14 @@ class productDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-          
-            Column::make('name_ar')->title('Name (Arabic)'),
-            Column::make('name_eng')->title('Name (English)'),
-            Column::make('note')->title('Note'),
+            Column::make('category.name_arabic')->title('Category Name'),
+
+            Column::make('name_arabic')->title('Name Ar'),
+            Column::make('name_english')->title('Name Eng'),
+            Column::make('image')->title('Image'),
+            Column::make('product_descrption')->title('product descrption'),
             Column::make('quantity')->title('Quantity'),
             Column::make('price')->title('Price'),
-            // Column::make('category_id')->title('Category ID'),
-            Column::make('category_name')->title('Category Name'),
             Column::computed('action')
             ->exportable(false)
             ->printable(false)

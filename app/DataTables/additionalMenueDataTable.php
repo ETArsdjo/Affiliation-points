@@ -2,7 +2,7 @@
 
 namespace App\DataTables;
 
-use App\Models\categories;
+use App\Models\additionalMenue;
 use Illuminate\Database\Eloquent\Builder as QueryBuilder;
 use Yajra\DataTables\EloquentDataTable;
 use Yajra\DataTables\Html\Builder as HtmlBuilder;
@@ -12,7 +12,7 @@ use Yajra\DataTables\Html\Editor\Editor;
 use Yajra\DataTables\Html\Editor\Fields;
 use Yajra\DataTables\Services\DataTable;
 
-class CategoriDataTable extends DataTable
+class additionalMenueDataTable extends DataTable
 {
     /**
      * Build the DataTable class.
@@ -22,19 +22,14 @@ class CategoriDataTable extends DataTable
     public function dataTable(QueryBuilder $query): EloquentDataTable
     {
         return (new EloquentDataTable($query))
-            ->addColumn('action', function ($query) {
-                $editBtn = "<a href='" . route('category_admin.edit', $query->id) . "' class='btn btn-success '><i class='far fa-edit'></i></a>";
-                $deleteBtn = "<a href='" . route('category_admin.destroy', $query->id) . "' class='btn btn-danger my-2 delete-item'><i class='fas fa-trash-alt'></i></a>";
-                return $editBtn . $deleteBtn;
-
-            })
+            ->addColumn('action', 'additionalmenue.action')
             ->setRowId('id');
     }
 
     /**
      * Get the query source of dataTable.
      */
-    public function query(categories $model): QueryBuilder
+    public function query(additionalMenue $model): QueryBuilder
     {
         return $model->newQuery();
     }
@@ -45,7 +40,7 @@ class CategoriDataTable extends DataTable
     public function html(): HtmlBuilder
     {
         return $this->builder()
-                    ->setTableId('categori-table')
+                    ->setTableId('additionalmenue-table')
                     ->columns($this->getColumns())
                     ->minifiedAjax()
                     //->dom('Bfrtip')
@@ -67,17 +62,15 @@ class CategoriDataTable extends DataTable
     public function getColumns(): array
     {
         return [
-            Column::make('name_arabic'),
-            Column::make('name_english'),
-            Column::make('image'),
-
-
+            Column::make('id'),
+            Column::make('name_arabic')->title('Name Arabic'),
+            Column::make('name_english')->title('Name English'),
+            Column::make('price')->title('Price'),
             Column::computed('action')
-                  ->exportable(false)
-                  ->printable(false)
-                  ->width(120)
-                  ->addClass('text-center'),
-        
+            ->exportable(false)
+            ->printable(false)
+            ->width(60)
+            ->addClass('text-center'),
         ];
     }
 
@@ -86,6 +79,6 @@ class CategoriDataTable extends DataTable
      */
     protected function filename(): string
     {
-        return 'Categori_' . date('YmdHis');
+        return 'additionalMenue_' . date('YmdHis');
     }
 }

@@ -139,7 +139,7 @@
                     </div>
                 </div>
                 <div class="col-md-5">
-                    <div class="card card-default">
+                    <div class="card card-default"  style="height: 86%">
                         <div class="card-header">
                             <h2>Gender Distribution</h2>
                         <div class="card-body">
@@ -151,23 +151,9 @@
                 </div>
             </div>
 
-            <div class="row mt-4">
-                <div class="col-md-12">
-                    <div class="card card-default">
-                        <div class="card-header">
-                            <h2>Category Sales</h2>
-                        </div>
-                        <div class="card-body">
-                            <div class="chart-wrapper">
-                                <canvas id="category-sales-chart"></canvas>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <div class="row mt-4">
-                <div class="col-md-12">
+                <div class="col-md-6">
                     <div class="card card-default">
                         <div class="card-header">
                             <h2>User Points</h2>
@@ -175,6 +161,18 @@
                         <div class="card-body">
                             <div class="chart-wrapper">
                                 <canvas id="user-points-chart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="card card-default">
+                        <div class="card-header">
+                            <h2>Category Sales</h2>
+                        </div>
+                        <div class="card-body">
+                            <div class="chart-wrapper">
+                                <canvas id="category-sales-chart"></canvas>
                             </div>
                         </div>
                     </div>

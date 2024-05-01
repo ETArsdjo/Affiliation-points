@@ -51,18 +51,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-xl-12">
-                                <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">category note</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="note"
-                                            value="{{ $category->note }}">
-                                    </div>
-                                </div>
-                            </div>
+                         
                         </div>
                         <div class="row">
                             <div class="form-footer pt-5 border-top">

@@ -10,37 +10,34 @@
                 <div class="card-body">
                     <form action="{{ route('category_admin.store') }}" method="POST" enctype="multipart/form-data">
                         @csrf
-                       
+
                         <div class="row">
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">category type</label>
+                                    <label class="text-dark font-weight-medium">Name Arabic</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
                                         </div>
-                                        <input type="text" class="form-control" name="type"
-                                            value="{{ old('type') }}">
+                                        <input type="text" class="form-control" name="name_arabic" value="{{ old('name_arabic') }}">
+                                     
                                     </div>
                                 </div>
                             </div>
                             <div class="col-xl-12">
                                 <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">category price</label>
+                                    <label class="text-dark font-weight-medium">Name English</label>
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
                                             <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
                                         </div>
-                                        <input type="number" class="form-control" name="price"
-                                            value="{{ old('price') }}">
+                                        <input type="text" class="form-control" name="name_english" value="{{ old('name_english') }}">
+
                                     </div>
                                 </div>
                             </div>
-                            
-
-
-
-
+ 
+                       
                             <div class="row">
                                 <div class="col-xl-2">
                                     <div class="mb-5">
@@ -54,40 +51,16 @@
                                             {{-- <label class="text-dark font-weight-medium">Investment opportunity Name</label> --}}
                                             <div class="input-group mb-3">
                                                 <div class="input-group-prepend">
-                                                    <span class="input-group-text mdi mdi-folder-image" id="mdi-account"></span>
+                                                    <span class="input-group-text mdi mdi-folder-image"
+                                                        id="mdi-account"></span>
                                                 </div>
                                                 <input type="file" class="form-control" name="image" id="image">
                                             </div>
                                         </div>
-    
+
                                     </div>
                                 </div>
                             </div>
-                            {{-- <div class="col-xl-12">
-                                <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">category image</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
-                                        </div>
-                                        <input type="file" class="form-control" name="image"
-                                            value="{{ old('image') }}">
-                                    </div>
-                                </div>
-                            </div> --}}
-                            <div class="col-xl-12">
-                                <div class="mb-5">
-                                    <label class="text-dark font-weight-medium">category note</label>
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text mdi mdi-certificate" id="mdi-account"></span>
-                                        </div>
-                                        <input type="text" class="form-control" name="note"
-                                            value="{{ old('note') }}">
-                                    </div>
-                                </div>
-                            </div>
-                          
                         </div>
                         <div class="row">
                             <div class="form-footer pt-5 border-top">

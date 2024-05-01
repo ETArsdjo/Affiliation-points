@@ -1,12 +1,10 @@
-<?php
-
+<?php 
 namespace App\Http\Controllers;
 
 use App\DataTables\CategoriDataTable;
-use App\Models\branch;
 use App\Models\categories;
 use Illuminate\Http\Request;
-use App\Http\Requests\UpdatecategoriesRequest;
+use Illuminate\Support\Facades\Log; // Import Log facade
 
 class CategoriesController extends Controller
 {
@@ -23,27 +21,29 @@ class CategoriesController extends Controller
      */
     public function create()
     {
-        return view('admin.pages.category.create' );
+        return view('admin.pages.category.create');
     }
+
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
         // Data Validate
         $request->validate([
-            'type' => ['required'],
-            'price' => ['required'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // Adjust validation rules as needed
-            'note' => ['required'],
+            'name_arabic' => ['required'],
+            'name_english' => ['required'],
+            'image' => ['required', 'image'], // Adjust validation rules as needed
         ]);
     
         // Handle file upload
-        $imagePath = $request->file('image')->store('uploads'); // Assuming 'uploads' is your desired storage directory
+        $imagePath = $request->file('image')->store('Affiliation-points.public.uploads'); // Assuming 'uploads' is your desired storage directory
     
         // Create the category record with the image path
         categories::create([
-            'type' => $request->input('type'),
-            'price' => $request->input('price'),
+            'name_arabic' => $request->input('name_arabic'),
+            'name_english' => $request->input('name_english'),
             'image' => $imagePath,
-            'note' => $request->input('note'),
         ]);
     
         $notification = array(
@@ -52,16 +52,6 @@ class CategoriesController extends Controller
         );
     
         return redirect()->route('category_admin.index')->with($notification);
-    }
-    
-    
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(categories $categories)
-    {
-        //
     }
 
     /**
@@ -73,30 +63,35 @@ class CategoriesController extends Controller
         return view('admin.pages.category.edit', compact('category'));
     }
 
-
+    /**
+     * Update the specified resource in storage.
+     */
     public function update(Request $request, $id)
     {
         $request->validate([
-            'type' => ['required'],
-            'price' => ['required'],
-            'image' => ['required', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'], // Adjust validation rules as needed
-            'note' => ['required'],
+            'name_arabic' => ['required'],
+            'name_english' => ['required'],
+            'image' => ['image'], // Image is not required for update
         ]);
     
         $category = categories::findOrFail($id);
     
-        $category->type = $request->type;
-        $category->price = $request->price;
-        $category->image = $request->image;
-        $category->note = $request->note;
+        // Update category attributes
+        $category->name_arabic = $request->name_arabic;
+        $category->name_english = $request->name_english;
 
-    
+        // Update image only if provided
+        if ($request->hasFile('image')) {
+            $imagePath = $request->file('image')->store('uploads');
+            $category->image = $imagePath;
+        }
+
         $category->save();
     
-        $notification = array(
+        $notification = [
             'message' => 'Category Updated Successfully!!',
             'alert-type' => 'success',
-        );
+        ];
     
         return redirect()->route('category_admin.index')->with($notification);
     }
@@ -106,12 +101,13 @@ class CategoriesController extends Controller
      */
     public function destroy($id)
     {
-        try{
-            $branch = branch::findOrFail($id);
-            $branch->delete();
-            return response(['status' => 'success', 'message' => 'Deleted Successfully!']);}
-            catch  (\Exception $e) {
-                Log::error("Error deleting user: {$e->getMessage()}");
-            }
+        try {
+            $category = categories::findOrFail($id);
+            $category->delete();
+            return response(['status' => 'success', 'message' => 'Deleted Successfully!']);
+        } catch (\Exception $e) {
+            Log::error("Error deleting category: {$e->getMessage()}");
+            return response(['status' => 'error', 'message' => 'Something went wrong while deleting category.']);
+        }
     }
 }

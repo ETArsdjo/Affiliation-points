@@ -57,7 +57,7 @@ class AdminController extends Controller
     $data2 = collect($salesData)->pluck('total_sales_amount');
     
 
-     // Retrieve users along with their total points
+     // Retrieve users along with their total points 
      $users = User::with('points')->get();
 
      // Prepare data for the chart
