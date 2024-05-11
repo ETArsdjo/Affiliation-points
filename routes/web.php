@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AdditionalMenueController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoriesController;
 use App\Http\Controllers\EmployeeController;
@@ -10,6 +11,7 @@ use App\Http\Controllers\BranchController;
 use App\Http\Controllers\ChartController;
 
 
+use App\Models\additionalMenue;
 use App\Models\employee;
 use Illuminate\Support\Facades\Route;
 
@@ -49,6 +51,7 @@ Route::resource('branch_admin', BranchController::class);
 Route::resource('employee_admin', EmployeeController::class);
 Route::resource('category_admin', CategoriesController::class);
 Route::resource('product_admin', ProductController::class);
+Route::resource('additional_menue_admin', AdditionalMenueController::class);
 
 Route::get('/bar_chart', [ChartController::class, 'genderChart']);
 

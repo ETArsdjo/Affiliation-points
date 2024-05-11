@@ -29,30 +29,47 @@ class CategoriesController extends Controller
      */
     public function store(Request $request)
     {
-        // Data Validate
-        $request->validate([
+$request->validate([
             'name_arabic' => ['required'],
             'name_english' => ['required'],
-            'image' => ['required', 'image'], // Adjust validation rules as needed
+            'image' => ['required', 'image'], 
         ]);
-    
-        // Handle file upload
-        $imagePath = $request->file('image')->store('Affiliation-points.public.uploads'); // Assuming 'uploads' is your desired storage directory
-    
-        // Create the category record with the image path
-        categories::create([
+
+$imagePath = $request->file('image')->store('public/category_images');
+
+           $category = categories::create([
             'name_arabic' => $request->input('name_arabic'),
             'name_english' => $request->input('name_english'),
-            'image' => $imagePath,
+            'image' => $imagePath
         ]);
-    
-        $notification = array(
-            'message' => 'Category Created Successfully!!',
-            'alert-type' => 'success',
-        );
-    
-        return redirect()->route('category_admin.index')->with($notification);
+
+return redirect()->route('category_admin.index')->with('success', 'Category created successfully.');
     }
+
+    public function update(Request $request, $id)
+    {
+           $request->validate([
+            'name_arabic' => ['required'],
+            'name_english' => ['required'],
+            'image' => ['image'], 
+        ]);
+        $category = categories::findOrFail($id);
+        $category->name_arabic = $request->name_arabic;
+        $category->name_english = $request->name_english;
+
+if ($request->hasFile('image')) {
+            
+            $imagePath = $request->file('image')->store('public/category_images');
+            $category->image = $imagePath; 
+        }
+
+$category->save();
+
+        
+        return redirect()->route('category_admin.index')->with('success', 'Category updated successfully.');
+    }
+
+
 
     /**
      * Show the form for editing the specified resource.
@@ -66,35 +83,7 @@ class CategoriesController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, $id)
-    {
-        $request->validate([
-            'name_arabic' => ['required'],
-            'name_english' => ['required'],
-            'image' => ['image'], // Image is not required for update
-        ]);
-    
-        $category = categories::findOrFail($id);
-    
-        // Update category attributes
-        $category->name_arabic = $request->name_arabic;
-        $category->name_english = $request->name_english;
-
-        // Update image only if provided
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('uploads');
-            $category->image = $imagePath;
-        }
-
-        $category->save();
-    
-        $notification = [
-            'message' => 'Category Updated Successfully!!',
-            'alert-type' => 'success',
-        ];
-    
-        return redirect()->route('category_admin.index')->with($notification);
-    }
+  
 
     /**
      * Remove the specified resource from storage.

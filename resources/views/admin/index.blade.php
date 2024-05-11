@@ -8,15 +8,15 @@
         <div class="content">
             <!-- Top Statistics -->
             <div class="row">
-                <div class="col-xl-3 col-sm-6">
+                <div class="col-xl-4 col-sm-6">
                     <div class="card card-default card-mini">
                         <div class="card-header">
-                            <h2>Members</h2>
+                            <h2>Max Category{{ $maxCategory->name }}</h2>
                             <div class="dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="#" role="button" id="dropdownMenuLink"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 </a>
-
+                
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuLink">
                                     <a class="dropdown-item" href="#">Action</a>
                                     <a class="dropdown-item" href="#">Another action</a>
@@ -24,7 +24,7 @@
                                 </div>
                             </div>
                             <div class="sub-title">
-                                {{-- <h4 class="mr-1">{{ $members->count() }}</h4> --}}
+                                <h4 class="mr-1">{{ $maxCategory->orders_count }}</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -36,10 +36,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6">
+                
+                <div class="col-xl-4 col-sm-6">
                     <div class="card card-default card-mini">
                         <div class="card-header">
-                            <h2>Number</h2>
+                            <h2>customer num</h2>
                             <div class="dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
                                     id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -64,10 +65,11 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6">
+                
+                <div class="col-xl-4 col-sm-6">
                     <div class="card card-default card-mini">
                         <div class="card-header">
-                            <h2>Events</h2>
+                            <h2>Max Gender</h2>
                             <div class="dropdown">
                                 <a class="dropdown-toggle icon-burger-mini" href="#" role="button"
                                     id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -92,7 +94,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-3 col-sm-6">
+                {{-- <div class="col-xl-3 col-sm-6">
                     <div class="card card-default card-mini">
                         <div class="card-header">
                             <h2>Media</h2>
@@ -108,7 +110,7 @@
                                 </div>
                             </div>
                             <div class="sub-title">
-                                {{-- <h4 class="mr-1">{{ $media->count() }}</h4> --}}
+                                <h4 class="mr-1">{{ $media->count() }}</h4>
                             </div>
                         </div>
                         <div class="card-body">
@@ -119,7 +121,7 @@
                             </div>
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
 
 

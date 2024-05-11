@@ -32,6 +32,18 @@
                         <span class="nav-text">Categories</span>
                     </a>
                 </li>
+                <li class="">
+                    <a class="sidenav-item-link" href="{{ route('product_admin.index') }}">
+                        <i class="mdi mdi-folder"></i>
+                        <span class="nav-text">products</span>
+                    </a>
+                </li>
+                <li class="">
+                    <a class="sidenav-item-link" href="{{ route('additional_menue_admin.index') }}">
+                        <i class="mdi mdi-folder"></i>
+                        <span class="nav-text">Additional Menue </span>
+                    </a>
+                </li>
                 
                 <li class="">
                     <a class="sidenav-item-link" href="{{ route('branch_admin.index') }}">
